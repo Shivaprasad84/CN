@@ -1,26 +1,7 @@
 BEGIN {udp0 = 0; udp1 = 0; d0 = 0; d1 = 0}
 {
-	if($1 == "r") {
-		if($8 == "1")
-		{
-			udp0++;
-		}
-		else if($8 == "2")
-		{
-			udp1++;
-		}
-		
-	}
-	else if($1 == "d") {
-		if($8 == "1")
-		{
-			d0++;
-		}
-		else if($8 == "2")
-		{
-			d1++;
-		}
-	}
+	if($1 == "r") ($8 == "1") ? udp0++ : udp1++;
+	else if($1 == "d") ($8 == "1") ? d0++ : d1++;
 }
 END {
 	printf("No of packets sent by udp0 = %d\n", udp0);
